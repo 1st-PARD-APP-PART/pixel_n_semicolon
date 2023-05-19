@@ -45,12 +45,23 @@ https://www.notion.so/kimboyworkman/f842bf6c694744c2bcc67098e16f135b
 
 ## Technical Slide
 
-**Attack 기능 작동 구조** <br>
+**Attack 기능 작동 구조** <br> 
+
+
 <img width="691" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/7ab776d1-49e0-4b90-9687-3aa08234a35b">
 
 
 
 **사용한 기술 스택** <br>
+
+- Firebase <br>
+ <img width="532" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/6c367521-7ebd-42fe-8ff1-bf4562262dd3"> 
+ 
+ - Flutter
+ <img width="453" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/caed7611-9eab-489b-a711-c3f77aef1245">
+
+ - Figma
+<img width="453" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/08f0f33d-514d-48ab-a22a-b29151954f36">
 
 
 
