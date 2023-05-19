@@ -40,10 +40,6 @@ https://file.notion.so/f/s/2dcac97b-14a8-4ccc-bd65-fc6be79fcf84/UI.pdf?id=f1687d
 
 
 
-## Team
-
-https://www.notion.so/kimboyworkman/f842bf6c694744c2bcc67098e16f135b 
-
 
 ## 시연영상
 
@@ -84,6 +80,8 @@ https://www.notion.so/kimboyworkman/f842bf6c694744c2bcc67098e16f135b
 
 
 
+## Team
 
+https://www.notion.so/kimboyworkman/f842bf6c694744c2bcc67098e16f135b 
 
 
