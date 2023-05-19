@@ -2,7 +2,7 @@
 
 2023 PARD 1st Semester Short Hackathon
 
-**변하지 않도록 도와주는 서비스/ 더 변화할 수 있도록 도와주는 서비스**<br>
+**Topic: 변하지 않도록 도와주는 서비스/ 더 변화할 수 있도록 도와주는 서비스**<br>
 
 ## OVERVIEW
 
