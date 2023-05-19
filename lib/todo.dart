@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+
+import 'model/todo.dart';
 
 class TodoPage extends StatefulWidget {
   const TodoPage({super.key});
@@ -67,6 +70,54 @@ class _TodoPageState extends State<TodoPage> {
     final minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
     final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
     return '$hours:$minutes:$seconds';
+  }
+
+  Future<List<Todo>> _fetchTodosFromFirestore() async {
+    final snapshot = await FirebaseFirestore.instance.collection('data').get();
+    final todos = snapshot.docs.map((doc) {
+      final data = doc.data();
+      return Todo(
+        title: data['title'],
+        points: data['points'],
+      );
+    }).toList();
+    return todos;
+  }
+
+  List<Card> _buildCards(BuildContext context, List<Todo> todos) {
+    return todos.map((todo) {
+      return Card(
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 0.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      todo.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                      ),
+                      maxLines: 1,
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text(
+                      '${todo.points}',
+                      style: const TextStyle(fontSize: 10),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }).toList();
   }
 
   @override
@@ -180,12 +231,38 @@ class _TodoPageState extends State<TodoPage> {
             ),
           ),
           Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Color(0XFF340B76),
-              ),
-            ),
-          ),
+              child: FutureBuilder<List<Todo>>(
+            future: _fetchTodosFromFirestore(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text('Error: ${snapshot.error}'),
+                );
+              } else if (snapshot.hasData) {
+                final todos = snapshot.data!;
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: todos.length,
+                    itemBuilder: (context, index) {
+                      final todo = todos[index];
+                      return ListTile(
+                        title: Text(todo.title),
+                        subtitle: Text('Points: ${todo.points}'),
+                      );
+                    },
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: Text('No items found.'),
+                );
+              }
+            },
+          )),
           SizedBox(
             width: MediaQuery.of(context).size.width,
             height: 3,

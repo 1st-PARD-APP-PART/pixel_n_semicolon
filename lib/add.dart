@@ -19,6 +19,7 @@ class _AddPageState extends State<AddPage> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController pointsController = TextEditingController();
+  int points = 0;
 
   @override
   void initState() {
@@ -169,6 +170,9 @@ class _AddPageState extends State<AddPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextField(
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
                     controller: titleController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -235,7 +239,9 @@ class _AddPageState extends State<AddPage> {
                                   ),
                                   padding: const EdgeInsets.all(20)),
                               child: Image.asset('assets/1star.png'),
-                              onPressed: () {},
+                              onPressed: () {
+                                points = 1;
+                              },
                             ),
                           ),
                         ],
@@ -273,7 +279,9 @@ class _AddPageState extends State<AddPage> {
                               child: Image.asset(
                                 'assets/2star.png',
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                points = 2;
+                              },
                             ),
                           ),
                         ],
@@ -309,7 +317,9 @@ class _AddPageState extends State<AddPage> {
                                   ),
                                   padding: const EdgeInsets.all(20)),
                               child: Image.asset('assets/3star.png'),
-                              onPressed: () {},
+                              onPressed: () {
+                                points = 3;
+                              },
                             ),
                           ),
                         ],
@@ -350,7 +360,9 @@ class _AddPageState extends State<AddPage> {
                                   Image.asset('assets/2star.png'),
                                 ],
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                points = 4;
+                              },
                             ),
                           ),
                         ],
