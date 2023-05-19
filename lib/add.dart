@@ -17,8 +17,7 @@ class _AddPageState extends State<AddPage> {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
-  final TextEditingController pointsController = TextEditingController();
+  int points = 0;
 
   @override
   void initState() {
@@ -40,19 +39,14 @@ class _AddPageState extends State<AddPage> {
   void dispose() {
     _timer.cancel();
     titleController.dispose();
-    descriptionController.dispose();
-    pointsController.dispose();
     super.dispose();
   }
 
   void addData() {
     String title = titleController.text;
-    String description = descriptionController.text;
-    int points = int.parse(pointsController.text);
 
     Map<String, dynamic> data = {
       'title': title,
-      'description': description,
       'points': points,
     };
 
@@ -121,43 +115,56 @@ class _AddPageState extends State<AddPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: const CircleBorder(),
-                    backgroundColor: const Color(0xFFD9D9D9),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 8,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          backgroundColor: const Color(0xFFD9D9D9),
+                        ),
+                        child: const Text(
+                          '<',
+                          style: TextStyle(
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        'To-do list',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 150,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          addData();
+                          Navigator.pop(context);
+                        },
+                        child: const Text('확인'),
+                      )
+                    ],
                   ),
-                  child: const Text(
-                    '<',
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-                const Text(
-                  'To-do list',
-                  style: TextStyle(
+                  const Divider(
+                    height: 10,
+                    thickness: 2,
                     color: Colors.white,
-                    fontSize: 20,
                   ),
-                ),
-                const SizedBox(
-                  width: 150,
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('확인'),
-                )
-              ],
-            ),
-            const Divider(
-              height: 10,
-              thickness: 2,
-              color: Colors.white,
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
@@ -168,6 +175,9 @@ class _AddPageState extends State<AddPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextField(
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
                     controller: titleController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -234,7 +244,9 @@ class _AddPageState extends State<AddPage> {
                                   ),
                                   padding: const EdgeInsets.all(20)),
                               child: Image.asset('assets/1star.png'),
-                              onPressed: () {},
+                              onPressed: () {
+                                points = 1;
+                              },
                             ),
                           ),
                         ],
@@ -272,7 +284,9 @@ class _AddPageState extends State<AddPage> {
                               child: Image.asset(
                                 'assets/2star.png',
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                points = 2;
+                              },
                             ),
                           ),
                         ],
@@ -308,7 +322,9 @@ class _AddPageState extends State<AddPage> {
                                   ),
                                   padding: const EdgeInsets.all(20)),
                               child: Image.asset('assets/3star.png'),
-                              onPressed: () {},
+                              onPressed: () {
+                                points = 3;
+                              },
                             ),
                           ),
                         ],
@@ -349,7 +365,9 @@ class _AddPageState extends State<AddPage> {
                                   Image.asset('assets/2star.png'),
                                 ],
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                points = 4;
+                              },
                             ),
                           ),
                         ],
