@@ -20,9 +20,12 @@
 
 ## Target
 
-
+- 
+- 
 
 ## Solution
+- 스토리 
+<img width="543" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/18462ace-1c4d-4c31-95b3-4febaba2fd2e">
 
 
 
