@@ -35,6 +35,7 @@
 
 ## Team
 
+https://www.notion.so/kimboyworkman/f842bf6c694744c2bcc67098e16f135b 
 
 
 ## 시연영상
