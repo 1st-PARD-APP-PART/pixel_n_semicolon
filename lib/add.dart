@@ -114,222 +114,259 @@ class _AddPageState extends State<AddPage> {
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 8.0,
-          vertical: 12,
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color(0xFF340B76),
         ),
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Color(0xFF340B76),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: const CircleBorder(),
-                      backgroundColor: const Color(0xFFD9D9D9),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: const CircleBorder(),
+                    backgroundColor: const Color(0xFFD9D9D9),
+                  ),
+                  child: const Text(
+                    '<',
+                    style: TextStyle(
+                      fontSize: 25,
                     ),
-                    child: const Text(
-                      '<',
-                      style: TextStyle(
-                        fontSize: 25,
+                  ),
+                ),
+                const Text(
+                  'To-do list',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(
+                  width: 150,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('확인'),
+                )
+              ],
+            ),
+            const Divider(
+              height: 10,
+              thickness: 2,
+              color: Colors.white,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 15,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextField(
+                    controller: titleController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.black,
+                      labelText: '너희 할일을 적어죠!',
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const Text(
-                    'To-do list',
+                    '얼마나 어렵니.',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     ),
                   ),
                   const SizedBox(
-                    width: 150,
+                    height: 11,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('확인'),
-                  )
+                  const Text(
+                    '어려울수록 너는 포인트를 get.',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          const SizedBox(
+                            width: 58,
+                            child: Flexible(
+                              child: Text(
+                                '누워서 \n숨쉬기',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                            width: 58,
+                            height: 58,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF201236),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  padding: const EdgeInsets.all(20)),
+                              child: Image.asset('assets/1star.png'),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 9,
+                      ),
+                      Column(
+                        children: [
+                          const SizedBox(
+                            width: 58,
+                            child: Flexible(
+                              child: Text(
+                                '누워서\n죽먹기',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                            width: 58,
+                            height: 58,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF201236),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  padding: const EdgeInsets.all(20)),
+                              child: Image.asset(
+                                'assets/2star.png',
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 9,
+                      ),
+                      Column(
+                        children: [
+                          const SizedBox(
+                            width: 58,
+                            child: Flexible(
+                              child: Text(
+                                '누워서\n밥먹기',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                            width: 58,
+                            height: 58,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF201236),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  padding: const EdgeInsets.all(20)),
+                              child: Image.asset('assets/3star.png'),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 9,
+                      ),
+                      Column(
+                        children: [
+                          const SizedBox(
+                            width: 58,
+                            child: Flexible(
+                              child: Text(
+                                '누워서\n고기 굽기',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                            width: 58,
+                            height: 58,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF201236),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  padding: const EdgeInsets.all(20)),
+                              child: Column(
+                                children: [
+                                  Image.asset('assets/2star.png'),
+                                  Image.asset('assets/2star.png'),
+                                ],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ],
               ),
-              const Divider(
-                height: 10,
-                thickness: 2,
-                color: Colors.white,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextField(
-                      controller: titleController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        filled: true,
-                        fillColor: Colors.black,
-                        labelText: '너희 할일을 적어죠!',
-                        labelStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      '얼마나 어렵니.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 11,
-                    ),
-                    const Text(
-                      '어려울수록 너는 포인트를 get.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            const SizedBox(
-                              width: 58,
-                              child: Flexible(
-                                child: Text(
-                                  '누워서 \n숨쉬기',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                  ),
-                                  padding: const EdgeInsets.all(20)),
-                              child: const Text('1'),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            const SizedBox(
-                              width: 58,
-                              child: Flexible(
-                                child: Text(
-                                  '누워서 \n숨쉬기',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                  ),
-                                  padding: const EdgeInsets.all(20)),
-                              child: const Text('1'),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            const SizedBox(
-                              width: 58,
-                              child: Flexible(
-                                child: Text(
-                                  '누워서 \n숨쉬기',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                  ),
-                                  padding: const EdgeInsets.all(20)),
-                              child: const Text('1'),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            const SizedBox(
-                              width: 58,
-                              child: Flexible(
-                                child: Text(
-                                  '누워서 \n숨쉬기',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                  ),
-                                  padding: const EdgeInsets.all(20)),
-                              child: const Text('1'),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+            ),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.black,
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );
