@@ -7,8 +7,11 @@
 ## OVERVIEW
 
 
-<br> 'ㅗ' Task manager <br>
-<br> 초심을 유지하도록,ToDo list르 작성해보고, 친구들과의 관계가 한층 더 친하게 변화할 수 있도록 서로 경쟁하게 해주는 앱서비스 <br> <br>
+- 픽셀과 세미콜론 
+
+- 'ㅗ' : Task manager  
+
+- 하루 일과를 수행(todolist)한 뒤, 일과를 가장 잘 이수한 친구가 todolist를 잘 못 채운 친구의 휴대폰 화면을 잠그는 장난(attack)을 칠 수 있게 해주고, 공격받는 친구는 그것에 방어(defence)할 수 있게 해주는 서비스 
 
 ## Problem
 
@@ -53,11 +56,4 @@
 
 
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
