@@ -20,6 +20,7 @@ dependencies:
   url_launcher: ^6.1.11
   http: ^0.13.6
   google_sign_in: ^6.1.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

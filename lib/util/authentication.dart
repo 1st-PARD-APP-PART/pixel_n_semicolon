@@ -5,9 +5,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 class Authentication {
   Future<FirebaseApp> initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-    // TODO: Add auto login logic
-
     return firebaseApp;
   }
 

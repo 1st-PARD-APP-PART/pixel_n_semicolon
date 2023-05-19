@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'util/authentication.dart';
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -26,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
                 backgroundColor: const Color.fromARGB(213, 255, 134, 134),
               ),
               onPressed: () async {
-                final credential = await Authentication().signInWithGoogle();
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('구글 로그인 되었습니다'),
