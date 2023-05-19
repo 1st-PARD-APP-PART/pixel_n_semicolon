@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pixelnsemicolon/todolist.dart';
 
+import 'addTodo.dart';
 import 'group.dart';
 import 'login.dart';
 import 'ranking.dart';
@@ -16,6 +18,8 @@ class PixelNSemicolon extends StatelessWidget {
         '/login': (BuildContext context) => const LoginPage(),
         '/group': (BuildContext context) => const GroupPage(),
         '/ranking': (BuildContext context) => const RankingPage(),
+        '/todo':(BuildContext context) => const TodoList(),
+        '/add': (BuildContext context) => const addToDo(),
       },
       theme: ThemeData.light(useMaterial3: true),
     );
