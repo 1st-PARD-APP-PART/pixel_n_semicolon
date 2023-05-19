@@ -7,11 +7,12 @@
 ## OVERVIEW
 
 
-- 픽셀과 세미콜론 
+- 팀명: <br>
+  픽셀과 세미콜론 <br> 
 
-- 'ㅗ' : Task manager  
+- 서비스명: <br> 
+ 'ㅗ' : Task manager  
 
-- 하루 일과를 수행(todolist)한 뒤, 일과를 가장 잘 이수한 친구가 todolist를 잘 못 채운 친구의 휴대폰 화면을 잠그는 장난(attack)을 칠 수 있게 해주고, 공격받는 친구는 그것에 방어(defence)할 수 있게 해주는 서비스 
 
 
 https://file.notion.so/f/s/2dcac97b-14a8-4ccc-bd65-fc6be79fcf84/UI.pdf?id=f1687df4-e60e-49f5-87b1-3bdc75354bcc&table=block&spaceId=7e282e1f-b3ce-4d91-99fa-3871a8e9730b&expirationTimestamp=1684624284612&signature=Ik66rY5Zoyngkxl0rk9KG-bxihb2AttWUcIEVH93wo8&downloadName=UI.pdf
