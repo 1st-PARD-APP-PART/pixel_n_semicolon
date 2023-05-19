@@ -21,7 +21,7 @@ class _TodoPageState extends State<TodoPage> {
   late DateTime _midnight;
   late Duration _timeRemaining;
 
-  bool isChecked = true;
+  bool isChecked = false;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -227,7 +227,7 @@ class _TodoPageState extends State<TodoPage> {
                           child: Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(22),
+                              borderRadius: BorderRadius.circular(44),
                             ),
                             child: CheckboxListTile(
                               title: Text(
@@ -248,12 +248,12 @@ class _TodoPageState extends State<TodoPage> {
                               activeColor: const Color(0xFFBE6B6B),
                               checkColor: Colors.white,
                               controlAffinity: ListTileControlAffinity.leading,
-                              onChanged: (value) {
+                              value: isChecked != true,
+                              onChanged: (bool? value) {
                                 setState(() {
-                                  isChecked = value!;
+                                  isChecked = value! ? false : true;
                                 });
                               },
-                              value: isChecked,
                             ),
                           ),
                         );
