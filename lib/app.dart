@@ -17,7 +17,7 @@ class PixelNSemicolon extends StatelessWidget {
         '/group': (BuildContext context) => const GroupPage(),
         '/ranking': (BuildContext context) => const RankingPage(),
       },
-      theme: ThemeData.light(useMaterial3: true),
+      theme: ThemeData(useMaterial3: true, fontFamily: 'DungGeunMo'),
     );
   }
 }
