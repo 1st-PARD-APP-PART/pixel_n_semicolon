@@ -1,4 +1,4 @@
-# pixel_n_semicolon
+# pixel_N_semicolon
 
 2023 PARD 1st Semester Short Hackathon
 
