@@ -9,7 +9,7 @@ class RankingPage extends StatefulWidget {
 }
 
 class _RankingPageState extends State<RankingPage> {
-  int percent = 10;
+  int percent = 80;
   int points = 2;
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'util/authentication.dart';
+
 class AddPage extends StatefulWidget {
-  const AddPage({super.key});
+  const AddPage({Key? key}) : super(key: key);
 
   @override
   _AddPageState createState() => _AddPageState();
@@ -13,6 +15,11 @@ class _AddPageState extends State<AddPage> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController pointsController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -51,6 +58,16 @@ class _AddPageState extends State<AddPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add ToDo'),
+        leading: IconButton(
+          icon: const Icon(Icons.logout),
+          onPressed: () async {
+            await Authentication().signOut();
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('로그아웃 되었습니다'),
+            ));
+            Navigator.pushNamed(context, '/login');
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

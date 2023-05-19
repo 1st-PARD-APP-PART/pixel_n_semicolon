@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'add.dart';
 import 'group.dart';
 import 'login.dart';
 import 'ranking.dart';
@@ -17,7 +16,6 @@ class PixelNSemicolon extends StatelessWidget {
         '/login': (BuildContext context) => const LoginPage(),
         '/group': (BuildContext context) => const GroupPage(),
         '/ranking': (BuildContext context) => const RankingPage(),
-        '/add': (BuildContext context) => const AddPage(),
       },
       theme: ThemeData.light(useMaterial3: true),
     );
