@@ -78,8 +78,9 @@ class _RankingPageState extends State<RankingPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFFF7B31),
+        automaticallyImplyLeading: false,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
               width: 20,

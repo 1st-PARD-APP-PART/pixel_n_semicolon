@@ -71,13 +71,15 @@ class _TodoPageState extends State<TodoPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     final formattedDuration = _formatDuration(_timeRemaining);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFFF7B31),
+        automaticallyImplyLeading: false,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
               width: 20,
@@ -91,6 +93,7 @@ class _TodoPageState extends State<TodoPage> {
                 color: Colors.white,
               ),
             ),
+            SizedBox(width: size.width * 0.1),
           ],
         ),
       ),
