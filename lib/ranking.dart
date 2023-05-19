@@ -66,6 +66,7 @@ class _RankingPageState extends State<RankingPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     final formattedDuration =
         _formatDuration(_timeRemaining); // Format duration here
 
@@ -84,6 +85,7 @@ class _RankingPageState extends State<RankingPage> {
                 color: Colors.white,
               ),
             ),
+            SizedBox(width: size.width * 0.1),
           ],
         ),
       ),
@@ -133,7 +135,7 @@ class _RankingPageState extends State<RankingPage> {
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 21,
-                      left: 19,
+                      left: 15,
                     ),
                     child: Row(
                       children: [
@@ -219,7 +221,7 @@ class _RankingPageState extends State<RankingPage> {
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 21,
-                      left: 19,
+                      left: 15,
                     ),
                     child: Row(
                       children: [
@@ -301,7 +303,7 @@ class _RankingPageState extends State<RankingPage> {
                   Padding(
                     padding: const EdgeInsets.only(
                       top: 21,
-                      left: 19,
+                      left: 15,
                     ),
                     child: Row(
                       children: [

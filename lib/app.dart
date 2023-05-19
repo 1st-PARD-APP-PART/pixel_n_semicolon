@@ -11,6 +11,7 @@ class PixelNSemicolon extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'PixelNSemicolon',
+      debugShowCheckedModeBanner: false,
       initialRoute: '/login',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
