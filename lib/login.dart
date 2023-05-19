@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
                     content: Text('구글 로그인 되었습니다'),
                   ),
                 );
-                Navigator.pushNamed(context, '/group');
+                Navigator.pushNamed(context, '/ranking');
               },
               child: const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
