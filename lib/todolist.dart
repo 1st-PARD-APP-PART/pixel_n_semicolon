@@ -24,37 +24,47 @@ Navigator.pushNamed(context, '/ranking');    }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       backgroundColor: Colors.black,
+       backgroundColor: const Color(0XFFFF7B31),
         elevation: 0.5,
         
       ),
       body: Column(
         children: [
           Container(
-            decoration: const BoxDecoration(color: Colors.black),
-            height: 200,
-            child: const Row(
+            decoration:  const BoxDecoration(color: Colors.black),
+            height: 153,
+            child:  Row(
               children: [
-                SizedBox(width: 10,),
-                Icon(Icons.person, color: Colors.white,),
-                SizedBox(width: 40,),
-                Column(
+
+                const SizedBox(width: 16,),
+              //  Image.asset('assets/Ellipse 4.png'),
+               Image.asset('assets/Ellipse 1.png'),
+                const SizedBox(width: 14,),
+                 const Column(
                   children: [
                     SizedBox(height: 30,),
-                    Row(
-                      children: [
-                        Text('이름: ', style: TextStyle(color: Colors.white, fontSize: 20),                        
+                  
+                        Text('너는 정말 좋은 친구야 ', style: TextStyle(color: Colors.white, fontSize: 10, ),                        
                         ),
-                       // Text(name, style: TextStyle(color: Colors.white, fontSize: 20)),
-                      ],
-                    ),
+                       Text('김깔깔', style: TextStyle(color: Colors.white, fontSize: 20)),
+                     SizedBox(height: 24,),
+                     Text('10points', style: TextStyle(color: Colors.white, fontSize: 15),),
+                     SizedBox(height: 8,),
                       //statusbar 만들기
+                     // Image.asset('assets/rectangle 2.png'),
                   ],
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 30,),
+         Container(
+          decoration: const BoxDecoration(
+            color: Color(0XFF340B76),
+            
+          ),
+          height: 566,
+          
+         ),
 
           ]
           ),
@@ -67,15 +77,16 @@ Navigator.pushNamed(context, '/ranking');    }
   child: const Icon(Icons.add),
 ),
   bottomNavigationBar: BottomNavigationBar(
+    backgroundColor: Colors.black,
         currentIndex: selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.checklist), 
+            label: 'To-Do-list',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.arrow_forward_ios_outlined),
+            icon: Icon(Icons.workspace_premium),
             label: 'ranking',
           ),
         ],
@@ -83,7 +94,3 @@ Navigator.pushNamed(context, '/ranking');    }
     );
   }
 }
-
-
-
-

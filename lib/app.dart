@@ -19,7 +19,7 @@ class PixelNSemicolon extends StatelessWidget {
         '/group': (BuildContext context) => const GroupPage(),
         '/ranking': (BuildContext context) => const RankingPage(),
         '/todo':(BuildContext context) => const TodoList(),
-        '/add': (BuildContext context) => const addToDo(),
+        '/add': (BuildContext context) => const AddPage(),
       },
       theme: ThemeData.light(useMaterial3: true),
     );
