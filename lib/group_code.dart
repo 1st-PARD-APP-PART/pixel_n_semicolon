@@ -53,13 +53,19 @@ class _GroupCodeScreenState extends State<GroupCodeScreen> {
           SizedBox(
             height: 94,
           ),
-          Text(
-            textAlign: TextAlign.right,
-            '그룹 토큰:',
-            style: TextStyle(
-              fontSize: 10,
-              color: Colors.white,
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(width: 160),
+              Text(
+                textAlign: TextAlign.right,
+                '그룹 토큰:',
+                style: TextStyle(
+                  fontSize: 10,
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
           Text(
             'pixelNsemicolon',
