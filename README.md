@@ -15,6 +15,7 @@
 
 ## Problem
 
+<img width="698" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/9ac66327-43ca-4eac-97b0-0b580785a60f">
 
 
 ## Target
