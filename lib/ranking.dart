@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 
 class RankingPage extends StatefulWidget {
   const RankingPage({super.key});
@@ -14,38 +13,53 @@ class _RankingPageState extends State<RankingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.arrow_back),
-        title: const Text('랭킹'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-        child: Center(
-          child: ListView(
-            children: [
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('Name'),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("$points points"),
-                    LinearPercentIndicator(
-                      animation: true,
-                      animationDuration: 1000,
-                      lineHeight: 20.0,
-                      percent: percent / 100,
-                      barRadius: const Radius.circular(10),
-                      progressColor: Colors.blue[400],
-                      backgroundColor: Colors.grey[300],
-                    ),
-                  ],
+        appBar: AppBar(
+          leading: const Icon(Icons.arrow_back),
+          title: const Text('랭킹'),
+        ),
+        body: Column(
+          children: [
+            Container(
+              height: 120,
+              width: MediaQuery.of(context).size.width,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+              ),
+              child: const Center(
+                child: Text(
+                  '랭킹',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 5,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'group name: 단짝친구 ><',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+                child: Container(
+              decoration: const BoxDecoration(
+                color: Color(0xFFFF316F),
+              ),
+            )),
+          ],
+        ));
   }
 }
