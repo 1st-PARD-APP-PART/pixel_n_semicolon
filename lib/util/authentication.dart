@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Authentication {
+
+
   static Future<FirebaseApp> initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
 
@@ -68,4 +71,29 @@ class Authentication {
     await FirebaseAuth.instance.signOut();
     await googleSignIn.signOut();
   }
+
+  // Future<void> createUserData() async {
+  //   final userCollectionReference =
+  //       FirebaseFirestore.instance.collection('users').doc(user!.uid);
+  //   await userCollectionReference.set({
+  //     "userName": user!.displayName,
+  //     "flag": false,
+  //   });
+  // }
+  //
+  // Future<void> updateFlagTrue() async {
+  //   final userCollectionReference =
+  //       FirebaseFirestore.instance.collection('users').doc(user!.uid);
+  //   await userCollectionReference.update({
+  //     "flag": true,
+  //   });
+  // }
+  //
+  // Future<void> updateFlagFalse() async {
+  //   final userCollectionReference =
+  //       FirebaseFirestore.instance.collection('users').doc(user!.uid);
+  //   await userCollectionReference.update({
+  //     "flag": false,
+  //   });
+  // }
 }
