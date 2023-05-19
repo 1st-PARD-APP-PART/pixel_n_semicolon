@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pixelnsemicolon/lock_screen.dart';
 
 import 'add.dart';
 import 'group.dart';
@@ -21,6 +22,7 @@ class PixelNSemicolon extends StatelessWidget {
         '/ranking': (BuildContext context) => const RankingPage(),
         '/todo': (BuildContext context) => const TodoPage(),
         '/add': (BuildContext context) => const AddPage(),
+        '/lock': (BuildContext context) => const LockPage(),
       },
       theme: ThemeData(
         useMaterial3: true,

@@ -238,72 +238,77 @@ class _RankingPageState extends State<RankingPage> {
                         const SizedBox(
                           width: 19,
                         ),
-                        Container(
-                          width: 250,
-                          height: 95,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(41),
-                          ),
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Image.asset('assets/user2.png'),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 9,
-                                  top: 12,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/lock');
+                          },
+                          child: Container(
+                            width: 250,
+                            height: 95,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(41),
+                            ),
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 15,
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          '냠친구',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
+                                Image.asset('assets/user2.png'),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    left: 9,
+                                    top: 12,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 10,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    const Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          '32point',
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
+                                          Text(
+                                            '냠친구',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 6,
-                                    ),
-                                    LinearPercentIndicator(
-                                      width: 140,
-                                      animation: true,
-                                      animationDuration: 1000,
-                                      lineHeight: 14.0,
-                                      percent: 0.5,
-                                      barRadius: const Radius.circular(19),
-                                      progressColor: const Color(0xFFFFCF72),
-                                      backgroundColor: Colors.grey[300],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                      const Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            '32point',
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 6,
+                                      ),
+                                      LinearPercentIndicator(
+                                        width: 140,
+                                        animation: true,
+                                        animationDuration: 1000,
+                                        lineHeight: 14.0,
+                                        percent: 0.5,
+                                        barRadius: const Radius.circular(19),
+                                        progressColor: const Color(0xFFFFCF72),
+                                        backgroundColor: Colors.grey[300],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
