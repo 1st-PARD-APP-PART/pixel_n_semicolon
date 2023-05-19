@@ -44,6 +44,9 @@ flutter:
     - assets/user3.png
     - assets/me.png
     - assets/timer.png
+    - assets/1star.png
+    - assets/2star.png
+    - assets/3star.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../ranking.dart';
 import 'authentication.dart';
 
 class GoogleSignInButton extends StatefulWidget {
@@ -42,11 +41,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   _isSigningIn = false;
                 });
                 if (user != null) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const RankingPage(),
-                    ),
-                  );
+                  Navigator.pushNamed(context, '/todo');
                 }
               },
               child: const Padding(
