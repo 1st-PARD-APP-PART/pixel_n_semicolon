@@ -1,7 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'util/authentication.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({Key? key}) : super(key: key);
@@ -11,6 +11,10 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
+  late Timer _timer;
+  late DateTime _midnight;
+  late Duration _timeRemaining;
+
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
@@ -19,10 +23,22 @@ class _AddPageState extends State<AddPage> {
   @override
   void initState() {
     super.initState();
+    _midnight = _calculateMidnight();
+    _timeRemaining = _calculateTimeRemaining();
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        _timeRemaining = _calculateTimeRemaining();
+        if (_timeRemaining.inSeconds <= 0) {
+          _timer.cancel();
+        }
+      });
+    });
   }
 
   @override
   void dispose() {
+    _timer.cancel();
     titleController.dispose();
     descriptionController.dispose();
     pointsController.dispose();
@@ -53,84 +69,267 @@ class _AddPageState extends State<AddPage> {
     });
   }
 
+  DateTime _calculateMidnight() {
+    final now = DateTime.now();
+    final midnight = DateTime(now.year, now.month, now.day + 1);
+    return midnight;
+  }
+
+  Duration _calculateTimeRemaining() {
+    final now = DateTime.now();
+    final midnight = DateTime(now.year, now.month, now.day + 1);
+    return midnight.difference(now);
+  }
+
+  String _formatDuration(Duration duration) {
+    final hours = duration.inHours.toString().padLeft(2, '0');
+    final minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
+    final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
+    return '$hours:$minutes:$seconds';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final formattedDuration = _formatDuration(_timeRemaining);
+
     return Scaffold(
+      backgroundColor: const Color(0xFF340B76),
       appBar: AppBar(
-        title: const Text('Add ToDo'),
-        leading: IconButton(
-          icon: const Icon(Icons.logout),
-          onPressed: () async {
-            await Authentication().signOut();
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('로그아웃 되었습니다'),
-            ));
-            Navigator.pushNamed(context, '/login');
-          },
+        backgroundColor: const Color(0xFFFF7B31),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(
+              width: 20,
+            ),
+            Image.asset('assets/timer.png'),
+            Text(
+              formattedDuration,
+              style: const TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              controller: titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
-            ),
-            TextField(
-              controller: descriptionController,
-              decoration: const InputDecoration(labelText: 'Description'),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8.0,
+          vertical: 12,
+        ),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFF340B76),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
                       shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(20)),
-                  child: const Text('1'),
-                  onPressed: () {},
+                      backgroundColor: const Color(0xFFD9D9D9),
+                    ),
+                    child: const Text(
+                      '<',
+                      style: TextStyle(
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                  const Text(
+                    'To-do list',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 150,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('확인'),
+                  )
+                ],
+              ),
+              const Divider(
+                height: 10,
+                thickness: 2,
+                color: Colors.white,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      controller: titleController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.black,
+                        labelText: '너희 할일을 적어죠!',
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      '얼마나 어렵니.',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 11,
+                    ),
+                    const Text(
+                      '어려울수록 너는 포인트를 get.',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            const SizedBox(
+                              width: 58,
+                              child: Flexible(
+                                child: Text(
+                                  '누워서 \n숨쉬기',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  padding: const EdgeInsets.all(20)),
+                              child: const Text('1'),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              width: 58,
+                              child: Flexible(
+                                child: Text(
+                                  '누워서 \n숨쉬기',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  padding: const EdgeInsets.all(20)),
+                              child: const Text('1'),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              width: 58,
+                              child: Flexible(
+                                child: Text(
+                                  '누워서 \n숨쉬기',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  padding: const EdgeInsets.all(20)),
+                              child: const Text('1'),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            const SizedBox(
+                              width: 58,
+                              child: Flexible(
+                                child: Text(
+                                  '누워서 \n숨쉬기',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  padding: const EdgeInsets.all(20)),
+                              child: const Text('1'),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(20)),
-                  child: const Text('2'),
-                  onPressed: () {},
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(20)),
-                  child: const Text('3'),
-                  onPressed: () {},
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(20)),
-                  child: const Text('4'),
-                  onPressed: () {},
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(20)),
-                  child: const Text('5'),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            const SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: addData,
-              child: const Text('Add ToDo'),
-            ),
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

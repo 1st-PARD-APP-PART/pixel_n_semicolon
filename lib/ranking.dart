@@ -18,9 +18,14 @@ class _RankingPageState extends State<RankingPage> {
   late Duration _timeRemaining;
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(
+      () {
+        _selectedIndex = index;
+      },
+    );
+    if (index == 0) {
+      Navigator.pushNamed(context, '/todo');
+    }
   }
 
   @override
@@ -66,15 +71,17 @@ class _RankingPageState extends State<RankingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final formattedDuration =
-        _formatDuration(_timeRemaining); // Format duration here
+    final formattedDuration = _formatDuration(_timeRemaining);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFFF7B31),
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            const SizedBox(
+              width: 20,
+            ),
             Image.asset('assets/timer.png'),
             Text(
               formattedDuration,
@@ -284,7 +291,7 @@ class _RankingPageState extends State<RankingPage> {
                                       animation: true,
                                       animationDuration: 1000,
                                       lineHeight: 14.0,
-                                      percent: 0.7,
+                                      percent: 0.5,
                                       barRadius: const Radius.circular(19),
                                       progressColor: const Color(0xFFFFCF72),
                                       backgroundColor: Colors.grey[300],
@@ -393,7 +400,7 @@ class _RankingPageState extends State<RankingPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.text_snippet),
+            icon: Icon(Icons.checklist),
             label: 'to-do-list',
           ),
           BottomNavigationBarItem(
