@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '416733557792',
     projectId: 'pixelnsemicolon',
     storageBucket: 'pixelnsemicolon.appspot.com',
+    androidClientId: '416733557792-j7nlmk4mjtvf4fqb6l54npe5598qrqo2.apps.googleusercontent.com',
     iosClientId: '416733557792-du88dfkct72lb6mk4q87nnd6pfq8gse3.apps.googleusercontent.com',
     iosBundleId: 'com.example.pixelnsemicolon',
   );

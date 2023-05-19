@@ -11,7 +11,7 @@ class PixelNSemicolon extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'PixelNSemicolon',
-      initialRoute: '/login',
+      initialRoute: '/group',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
         '/group': (BuildContext context) => const GroupPage(),
