@@ -4,7 +4,9 @@
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+변하지 않도록 도와주는 서비스/ 더 변화할 수 있도록 도와주는 서비스
+
+초심을 유지하도록,ToDo list르 작성해보고, 친구들과의 관계가 한층 더 친하게 변화할 수 있도록 서로 경쟁하게 해주는 앱서비스 
 
 A few resources to get you started if this is your first Flutter project:
 
