@@ -1,4 +1,4 @@
-package com.example.pixel_n_semicolon
+package com.example.pixelnsemicolon
 
 import io.flutter.embedding.android.FlutterActivity
 
