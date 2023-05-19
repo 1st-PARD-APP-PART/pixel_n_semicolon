@@ -46,6 +46,7 @@ https://www.notion.so/kimboyworkman/f842bf6c694744c2bcc67098e16f135b
 ## Technical Slide
 
 **Attack 기능 작동 구조** <br>
+<img width="691" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/7ab776d1-49e0-4b90-9687-3aa08234a35b">
 
 
 
@@ -55,10 +56,12 @@ https://www.notion.so/kimboyworkman/f842bf6c694744c2bcc67098e16f135b
 
 **File Structure** <br>
 
+<img width="691" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/5e94a89f-2c27-44d1-b98c-c9c091ebe16f">
+
 
 **Data Structure** <br>
 
-
+<img width="532" alt="image" src="https://github.com/1st-PARD-APP-PART/pixel_n_semicolon/assets/109461985/dd24ce99-49b4-4eea-b020-d2122678dd3a">
 
 
 
