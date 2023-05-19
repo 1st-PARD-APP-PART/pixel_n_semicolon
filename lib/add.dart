@@ -90,6 +90,7 @@ class _AddPageState extends State<AddPage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.sizeOf(context);
     final formattedDuration = _formatDuration(_timeRemaining);
 
     return Scaffold(
@@ -145,8 +146,8 @@ class _AddPageState extends State<AddPage> {
                     fontSize: 20,
                   ),
                 ),
-                const SizedBox(
-                  width: 150,
+                 SizedBox(
+                  width: size.width * 0.35,
                 ),
                 ElevatedButton(
                   onPressed: () {},
