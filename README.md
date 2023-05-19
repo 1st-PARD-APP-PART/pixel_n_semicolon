@@ -1,6 +1,6 @@
 # pixel_n_semicolon
 
-A new Flutter project.
+2023 PARD 1st Semester Short Hackathon
 
 ## Getting Started
 
