@@ -21,6 +21,8 @@ class _TodoPageState extends State<TodoPage> {
   late DateTime _midnight;
   late Duration _timeRemaining;
 
+  bool isChecked = false;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -73,7 +75,10 @@ class _TodoPageState extends State<TodoPage> {
   }
 
   Future<List<Todo>> _fetchTodosFromFirestore() async {
-    final snapshot = await FirebaseFirestore.instance.collection('data').get();
+    final snapshot = await FirebaseFirestore.instance
+        .collection('data')
+        .orderBy('points')
+        .get();
     final todos = snapshot.docs.map((doc) {
       final data = doc.data();
       return Todo(
@@ -82,42 +87,6 @@ class _TodoPageState extends State<TodoPage> {
       );
     }).toList();
     return todos;
-  }
-
-  List<Card> _buildCards(BuildContext context, List<Todo> todos) {
-    return todos.map((todo) {
-      return Card(
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 0.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      todo.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                      ),
-                      maxLines: 1,
-                    ),
-                    const SizedBox(height: 8.0),
-                    Text(
-                      '${todo.points}',
-                      style: const TextStyle(fontSize: 10),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }).toList();
   }
 
   @override
@@ -245,15 +214,54 @@ class _TodoPageState extends State<TodoPage> {
               } else if (snapshot.hasData) {
                 final todos = snapshot.data!;
                 return Expanded(
-                  child: ListView.builder(
-                    itemCount: todos.length,
-                    itemBuilder: (context, index) {
-                      final todo = todos[index];
-                      return ListTile(
-                        title: Text(todo.title),
-                        subtitle: Text('Points: ${todo.points}'),
-                      );
-                    },
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF340B76),
+                    ),
+                    child: ListView.builder(
+                      itemCount: todos.length,
+                      itemBuilder: (context, index) {
+                        final todo = todos[index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(44),
+                            ),
+                            child: CheckboxListTile(
+                              title: Text(
+                                todo.title,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              subtitle: Text(
+                                'Points: ${todo.points}',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 13,
+                                ),
+                              ),
+                              shape: const CircleBorder(side: BorderSide()),
+                              activeColor: const Color(0xFFBE6B6B),
+                              checkColor: Colors.white,
+                              controlAffinity: ListTileControlAffinity.leading,
+                              value: isChecked != true,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value! ? false : true;
+                                });
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 );
               } else {

@@ -153,7 +153,7 @@ class _RankingPageState extends State<RankingPage> {
                           width: 19,
                         ),
                         Container(
-                          width: 250,
+                          width: 240,
                           height: 95,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -243,7 +243,7 @@ class _RankingPageState extends State<RankingPage> {
                             Navigator.pushNamed(context, '/lock');
                           },
                           child: Container(
-                            width: 250,
+                            width: 240,
                             height: 95,
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -326,7 +326,7 @@ class _RankingPageState extends State<RankingPage> {
                           width: 19,
                         ),
                         Container(
-                          width: 250,
+                          width: 240,
                           height: 95,
                           decoration: BoxDecoration(
                             color: Colors.white,
