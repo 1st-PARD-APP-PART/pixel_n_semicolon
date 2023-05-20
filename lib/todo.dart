@@ -94,211 +94,214 @@ class _TodoPageState extends State<TodoPage> {
     Size size = MediaQuery.sizeOf(context);
     final formattedDuration = _formatDuration(_timeRemaining);
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFFF7B31),
-        automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return WillPopScope(
+      onWillPop: null,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFFF7B31),
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              Image.asset('assets/timer.png'),
+              Text(
+                formattedDuration,
+                style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(width: size.width * 0.1),
+            ],
+          ),
+        ),
+        body: Column(
           children: [
-            const SizedBox(
-              width: 20,
-            ),
-            Image.asset('assets/timer.png'),
-            Text(
-              formattedDuration,
-              style: const TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            Container(
+              decoration: const BoxDecoration(
+                color: Colors.black,
+              ),
+              height: 150,
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Image.asset(
+                    'assets/user1.png',
+                    scale: 0.6,
+                  ),
+                  const SizedBox(
+                    width: 14,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            '너는 정말 좋은 친구야 ',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('김깔깔',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20)),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 14,
+                      ),
+                      const Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            '57points',
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      LinearPercentIndicator(
+                        width: 180,
+                        animation: true,
+                        animationDuration: 1000,
+                        lineHeight: 14.0,
+                        percent: 0.7,
+                        barRadius: const Radius.circular(19),
+                        progressColor: const Color(0xFFFF7272),
+                        backgroundColor: Colors.grey[300],
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            SizedBox(width: size.width * 0.1),
+            Expanded(
+                child: FutureBuilder<List<Todo>>(
+              future: _fetchTodosFromFirestore(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error: ${snapshot.error}'),
+                  );
+                } else if (snapshot.hasData) {
+                  final todos = snapshot.data!;
+                  return Expanded(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF340B76),
+                      ),
+                      child: ListView.builder(
+                        itemCount: todos.length,
+                        itemBuilder: (context, index) {
+                          final todo = todos[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 10,
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(44),
+                              ),
+                              child: CheckboxListTile(
+                                title: Text(
+                                  todo.title,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  'Points: ${todo.points}',
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                shape: const CircleBorder(side: BorderSide()),
+                                activeColor: const Color(0xFFBE6B6B),
+                                checkColor: Colors.white,
+                                controlAffinity: ListTileControlAffinity.leading,
+                                value: isChecked != true,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    isChecked = value! ? false : true;
+                                  });
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                } else {
+                  return const Center(
+                    child: Text('No items found.'),
+                  );
+                }
+              },
+            )),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 3,
+            ),
           ],
         ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.black,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/add');
+          },
+          child: const Icon(Icons.add),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.checklist),
+              label: 'To-Do-list',
             ),
-            height: 150,
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 16,
-                ),
-                Image.asset(
-                  'assets/user1.png',
-                  scale: 0.6,
-                ),
-                const SizedBox(
-                  width: 14,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          '너는 정말 좋은 친구야 ',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('김깔깔',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 20)),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 14,
-                    ),
-                    const Row(
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          '57points',
-                          style: TextStyle(color: Colors.white, fontSize: 15),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    LinearPercentIndicator(
-                      width: 180,
-                      animation: true,
-                      animationDuration: 1000,
-                      lineHeight: 14.0,
-                      percent: 0.7,
-                      barRadius: const Radius.circular(19),
-                      progressColor: const Color(0xFFFF7272),
-                      backgroundColor: Colors.grey[300],
-                    ),
-                  ],
-                ),
-              ],
+            BottomNavigationBarItem(
+              icon: Icon(Icons.workspace_premium),
+              label: 'ranking',
             ),
-          ),
-          Expanded(
-              child: FutureBuilder<List<Todo>>(
-            future: _fetchTodosFromFirestore(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('Error: ${snapshot.error}'),
-                );
-              } else if (snapshot.hasData) {
-                final todos = snapshot.data!;
-                return Expanded(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF340B76),
-                    ),
-                    child: ListView.builder(
-                      itemCount: todos.length,
-                      itemBuilder: (context, index) {
-                        final todo = todos[index];
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 10,
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(44),
-                            ),
-                            child: CheckboxListTile(
-                              title: Text(
-                                todo.title,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              subtitle: Text(
-                                'Points: ${todo.points}',
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 13,
-                                ),
-                              ),
-                              shape: const CircleBorder(side: BorderSide()),
-                              activeColor: const Color(0xFFBE6B6B),
-                              checkColor: Colors.white,
-                              controlAffinity: ListTileControlAffinity.leading,
-                              value: isChecked != true,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isChecked = value! ? false : true;
-                                });
-                              },
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                );
-              } else {
-                return const Center(
-                  child: Text('No items found.'),
-                );
-              }
-            },
-          )),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 3,
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/add');
-        },
-        child: const Icon(Icons.add),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.checklist),
-            label: 'To-Do-list',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.workspace_premium),
-            label: 'ranking',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        backgroundColor: Colors.black,
-        unselectedItemColor: const Color(0xFF4F4F4F),
-        selectedItemColor: Colors.white,
-        onTap: _onItemTapped,
+          ],
+          currentIndex: _selectedIndex,
+          backgroundColor: Colors.black,
+          unselectedItemColor: const Color(0xFF4F4F4F),
+          selectedItemColor: Colors.white,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
