@@ -41,7 +41,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   _isSigningIn = false;
                 });
                 if (user != null) {
-                  Navigator.pushNamed(context, '/todo');
+                  Navigator.pushNamed(context, '/group');
                 }
               },
               child: const Padding(

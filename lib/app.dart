@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pixelnsemicolon/group_code.dart';
+import 'package:pixelnsemicolon/group_create.dart';
+import 'package:pixelnsemicolon/group_join.dart';
 import 'package:pixelnsemicolon/lock_screen.dart';
 
 import 'add.dart';
@@ -19,6 +22,9 @@ class PixelNSemicolon extends StatelessWidget {
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
         '/group': (BuildContext context) => const GroupPage(),
+        '/group_code': (BuildContext context) => const GroupCodeScreen(),
+        '/group_create': (BuildContext context) => const CreateGroupScreen(),
+        '/group_join': (BuildContext context) => const JoinGroupScreen(),
         '/ranking': (BuildContext context) => const RankingPage(),
         '/todo': (BuildContext context) => const TodoPage(),
         '/add': (BuildContext context) => const AddPage(),
